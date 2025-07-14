@@ -1,0 +1,48 @@
+name:  Deploy to VPS
+
+# Se dispara al hacer push a main
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    name: Deploy to production server
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repo
+      uses: actions/checkout@v4
+
+    - name: Setup SSH
+      run: |
+        mkdir -p ~/.ssh
+        echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_ed25519
+        chmod 600 ~/.ssh/id_ed25519
+        ssh-keyscan -H ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
+
+    - name: Deploy via SSH
+      run: |
+        ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} << 'EOF'
+          set -e
+          echo "Entrando al proyecto..."
+          cd /var/www/bibliotech_Express-React
+
+          echo "Actualizando código…"
+          git pull origin main
+
+          echo "Backend: instalando dependencias…"
+          cd mi-backend
+          npm install
+
+          echo "Reiniciando backend con PM2…"
+          pm2 reload 0
+
+          echo "Frontend: construyendo aplicación…"
+          cd ../mi-frontend
+          npm install
+          npm run build
+
+          echo "¡Despliegue completado exitosamente!"
+        EOF
