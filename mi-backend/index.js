@@ -11,7 +11,7 @@ const booksRoutes = require('./routes/booksRoutes');
 const loansRoutes = require('./routes/loansRoutes');
 
 // Configurar CORS
-app.use(cors({ origin: 'http://localhost:5173' })); // Permitir solicitudes desde el frontend
+app.use(cors({ origin: 'https://bibliotech.proyectoinsti.site/' })); // Permitir solicitudes desde el frontend
 
 // Middleware para analizar JSON
 app.use(express.json());
@@ -24,6 +24,6 @@ app.use('/api/libros', booksRoutes);
 app.use('/api/prestamos', loansRoutes);
 
 // Iniciar el servidor
-app.listen(PORT, () => {
-  console.log(`Servidor corriendo en http://localhost:${PORT}`);
+app.listen(PORT, '0.0.0.0', () => {
+  console.log(`Servidor corriendo en http://0.0.0.0:${PORT}`);
 });
