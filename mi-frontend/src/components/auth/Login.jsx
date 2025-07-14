@@ -116,7 +116,7 @@ export default function Login() {
             <button
               type="submit"
               disabled={loading}
-              className={`w-full btn-primary ${loading ? 'opacity-50 cursor-not-allowed' : ''}`}
+              className={`w-full bg-red-600 hover:bg-red-700 text-white font-medium py-2 px-4 rounded-md transition-colors ${loading ? 'opacity-50 cursor-not-allowed' : ''}`}
             >
               {loading ? (
                 <div className="flex items-center justify-center">
