@@ -7,8 +7,8 @@ export default function CategoryManagement() {
   const [formData, setFormData] = useState({ nombre: '', descripcion: '' });
   const [formError, setFormError] = useState('');
   const [formLoading, setFormLoading] = useState(false);
-  const { data: categorias, loading, error, refetch } = useFetch('http://127.0.0.1:3000/api/categorias');
-  const categoriasApi = useFetch('http://127.0.0.1:3000/api/categorias', 'POST', null, false);
+  const { data: categorias, loading, error, refetch } = useFetch(`${import.meta.env.VITE_API_URL}/api/categorias`);
+  const categoriasApi = useFetch(`${import.meta.env.VITE_API_URL}/api/categorias`, 'POST', null, false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();

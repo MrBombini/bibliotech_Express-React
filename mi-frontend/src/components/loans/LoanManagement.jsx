@@ -9,9 +9,9 @@ export default function LoanManagement() {
     dueDate: '',
   });
   // Obtener préstamos, libros y usuarios desde la API
-  const { data: loans, loading: loadingLoans, error: errorLoans, refetch: refetchLoans, execute: executeLoan } = useFetch('http://127.0.0.1:3000/api/prestamos');
-  const { data: books, loading: loadingBooks, error: errorBooks } = useFetch('http://127.0.0.1:3000/api/libros');
-  const { data: users, loading: loadingUsers, error: errorUsers } = useFetch('http://127.0.0.1:3000/api/users');
+  const { data: loans, loading: loadingLoans, error: errorLoans, refetch: refetchLoans, execute: executeLoan } = useFetch(`${import.meta.env.VITE_API_URL}/api/prestamos`);
+  const { data: books, loading: loadingBooks, error: errorBooks } = useFetch(`${import.meta.env.VITE_API_URL}/api/libros`);
+  const { data: users, loading: loadingUsers, error: errorUsers } = useFetch(`${import.meta.env.VITE_API_URL}/api/users`);
   const [userError, setUserError] = useState('');
   const [submitError, setSubmitError] = useState('');
   const [submitting, setSubmitting] = useState(false);

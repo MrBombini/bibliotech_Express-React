@@ -4,9 +4,9 @@ import { useApp } from '../../context/AppContext';
 export default function Dashboard() {
   const { state, dispatch } = useApp();
   // Libros, préstamos y usuarios desde la API
-  const { data: books } = useFetch('http://127.0.0.1:3000/api/libros');
-  const { data: loans } = useFetch('http://127.0.0.1:3000/api/prestamos');
-  const { data: users } = useFetch('http://127.0.0.1:3000/api/users');
+  const { data: books } = useFetch(`${import.meta.env.VITE_API_URL}/api/libros`);
+  const { data: loans } = useFetch(`${import.meta.env.VITE_API_URL}/api/prestamos`);
+  const { data: users } = useFetch(`${import.meta.env.VITE_API_URL}/api/users`);
 
   // Calcular libros agregados en el mes más reciente
   let librosMes = 0;

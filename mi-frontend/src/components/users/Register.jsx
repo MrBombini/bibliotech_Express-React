@@ -23,7 +23,7 @@ export default function Register({ goToLogin }) {
     setError('');
     setSuccess(false);
     try {
-      const res = await fetch('http://127.0.0.1:3000/api/users', {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/users`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData)

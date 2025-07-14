@@ -7,8 +7,8 @@ export default function AuthorManagement() {
   const [formData, setFormData] = useState({ nombre: '', nacionalidad: '' });
   const [formError, setFormError] = useState('');
   const [formLoading, setFormLoading] = useState(false);
-  const { data: autores, loading, error, refetch } = useFetch('http://127.0.0.1:3000/api/autor');
-  const autoresApi = useFetch('http://127.0.0.1:3000/api/autor', 'POST', null, false);
+  const { data: autores, loading, error, refetch } = useFetch(`${import.meta.env.VITE_API_URL}/api/autor`);
+  const autoresApi = useFetch(`${import.meta.env.VITE_API_URL}/api/autor`, 'POST', null, false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();

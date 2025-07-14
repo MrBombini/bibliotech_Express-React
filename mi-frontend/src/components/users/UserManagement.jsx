@@ -16,7 +16,7 @@ export default function UserManagement() {
   const statuses = ['activo', 'suspendido', 'inactivo'];
 
   // Hook para obtener usuarios
-  const { data: users, loading, error, refetch } = useFetch('http://127.0.0.1:3000/api/users');
+  const { data: users, loading, error, refetch } = useFetch(`${import.meta.env.VITE_API_URL}/api/users`);
 
   const filteredUsers = (users || []).filter(user => {
     const matchesSearch = user.nombre.toLowerCase().includes(searchTerm.toLowerCase()) ||

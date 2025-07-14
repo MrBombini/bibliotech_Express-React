@@ -18,11 +18,11 @@ export default function BookManagement() {
   const [formLoading, setFormLoading] = useState(false);
 
   // Fetch libros, autores y categorias
-  const { data: books, loading, error, refetch } = useFetch('http://127.0.0.1:3000/api/libros');
-  const { data: autores } = useFetch('http://127.0.0.1:3000/api/autor');
-  const { data: categorias } = useFetch('http://127.0.0.1:3000/api/categorias');
+  const { data: books, loading, error, refetch } = useFetch(`${import.meta.env.VITE_API_URL}/api/libros`);
+  const { data: autores } = useFetch(`${import.meta.env.VITE_API_URL}/api/autor`);
+  const { data: categorias } = useFetch(`${import.meta.env.VITE_API_URL}/api/categorias`);
   // Hook para POST de libros
-  const librosApi = useFetch('http://127.0.0.1:3000/api/libros', 'POST', null, false);
+  const librosApi = useFetch(`${import.meta.env.VITE_API_URL}/api/libros`, 'POST', null, false);
 
   const filteredBooks = (Array.isArray(books) ? books : []).filter(book => {
     const matchesSearch = book.nombre.toLowerCase().includes(searchTerm.toLowerCase()) ||
